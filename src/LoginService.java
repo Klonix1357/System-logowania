@@ -13,15 +13,25 @@ public class LoginService
 
     public void login(String username, String password)
     {
-        for (User user : users)
+        boolean zalogowano = false;
+        for (int i = 0; i < users.size(); i++)
         {
-            if (user.getUsername().equals(username))
+            if (users.get(i).getUsername().equals(username))
             {
-                if (user.getPassword().equals(password))
+                if (users.get(i).getPassword().equals(password))
                 {
-                    // menu2(int index)
+                    zalogowano = true;
+                    details(i);
+                }
+                else
+                {
+                    System.out.println("Błędne hasło");
                 }
             }
+        }
+
+        if (!zalogowano) {
+            System.out.println("Błędne dane albo takie konto nie istnieje");
         }
     }
 
@@ -47,7 +57,7 @@ public class LoginService
 
         while(wybor != 2)
         {
-            System.out.println("Co chcesz zrobić na tym koncie?");
+            System.out.println("\n\nCo chcesz zrobić na tym koncie?");
             System.out.println("1. Zobaczyć poziom dostępu tego konta");
             System.out.println("2. Wylogować się");
             wybor = getInt("Wybierz opcję: ");
@@ -55,7 +65,6 @@ public class LoginService
             switch (wybor)
             {
                 case 1:
-                    System.out.println("\n");
                     users.get(index).getAccessLevel();
                     break;
 
