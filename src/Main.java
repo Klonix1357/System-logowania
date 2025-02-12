@@ -13,27 +13,27 @@ public class Main
     );
 
     static Programmer programmer = new Programmer(
-            "korposzczur",
-            "k0rp05z€zur",
-            "korposzczur@o2.pl",
+            "Kamil",
+            "trudne-hasło",
+            "kamil55@o2.pl",
             555111555,
             5555
     );
 
     static Tester tester = new Tester(
-            "retset",
+            "Jan",
             "qwerty111",
-            "retset@gmail.com",
-            234234234,
+            "jankowalski@gmail.com",
+            233233233,
             2025
     );
 
     static Manager manager = new Manager(
-            "",
-            "",
-            "",
-            0,
-            0
+            "Adam",
+            "twojszef",
+            "adam.nowak@zsegw.pl",
+            999555999,
+            4321
     );
 
     private static void logowanie1()
@@ -53,12 +53,16 @@ public class Main
 
     private static void logowanie3()
     {
-
+        String username = getLine("Wpisz nazwę użytkownika: ");
+        int token = getInt("Wpisz token: ");
+        ls.login(username, token);
     }
 
     private static void logowanie4()
     {
-
+        long phoneNumber = getInt("Wpisz numer telefonu: ");
+        String password = getLine("Wpisz hasło: ");
+        ls.login(phoneNumber, password);
     }
 
     public static void main(String[] args)
@@ -73,7 +77,7 @@ public class Main
         int wybor = 0;
         while(wybor != 5)
         {
-            System.out.println("Witaj w systemie logowania\n");
+            System.out.println("\nWitaj w systemie logowania\n");
             System.out.println("Wybierz sposób logowania:");
             System.out.println("1. Nazwa użytkownika + hasło");
             System.out.println("2. Nazwa użytkownika + e-mail + hasło");

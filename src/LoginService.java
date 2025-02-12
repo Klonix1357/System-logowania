@@ -13,14 +13,96 @@ public class LoginService
 
     public void login(String username, String password)
     {
-        boolean zalogowano = false;
+        boolean znalezionoKonto = false;
         for (int i = 0; i < users.size(); i++)
         {
             if (users.get(i).getUsername().equals(username))
             {
+                znalezionoKonto = true;
                 if (users.get(i).getPassword().equals(password))
                 {
-                    zalogowano = true;
+                    details(i);
+                }
+                else
+                {
+                    System.out.println("Błędne hasło");
+                }
+            }
+
+        }
+        if (!znalezionoKonto)
+        {
+            System.out.println("Taka nazwa użytkownika nie istnieje");
+        }
+    }
+
+    public void login(String username, String email, String password)
+    {
+        boolean znalezionoKonto = false;
+        for (int i = 0; i < users.size(); i++)
+        {
+            if (users.get(i).getUsername().equals(username))
+            {
+                znalezionoKonto = true;
+                if (users.get(i).getEmail().equals(email))
+                {
+                    if (users.get(i).getPassword().equals(password))
+                    {
+                        details(i);
+                    }
+                    else
+                    {
+                        System.out.println("Błędne hasło");
+                    }
+                }
+                else
+                {
+                    System.out.println("Błędny adres email");
+                }
+            }
+        }
+
+        if (!znalezionoKonto)
+        {
+            System.out.println("Taka nazwa użytkownika nie istnieje");
+        }
+    }
+
+    public void login(String username, int token)
+    {
+        boolean znalezionoKonto = false;
+        for (int i = 0; i < users.size(); i++)
+        {
+            if (users.get(i).getUsername().equals(username))
+            {
+                znalezionoKonto = true;
+                if (users.get(i).getToken() == token)
+                {
+                    details(i);
+                }
+                else
+                {
+                    System.out.println("Błędny token");
+                }
+            }
+        }
+
+        if (!znalezionoKonto)
+        {
+            System.out.println("Taka nazwa użytkownika nie istnieje");
+        }
+    }
+
+    public void login(long phoneNumber, String password)
+    {
+        boolean znalezionoNumer = false;
+        for (int i = 0; i < users.size(); i++)
+        {
+            if (users.get(i).getPhoneNumber() == phoneNumber)
+            {
+                znalezionoNumer = true;
+                if (users.get(i).getPassword().equals(password))
+                {
                     details(i);
                 }
                 else
@@ -30,24 +112,10 @@ public class LoginService
             }
         }
 
-        if (!zalogowano) {
-            System.out.println("Błędne dane albo takie konto nie istnieje");
+        if (!znalezionoNumer)
+        {
+            System.out.println("Taki numer telefonu nie został znaleziony");
         }
-    }
-
-    public void login(String username, String email, String password)
-    {
-
-    }
-
-    public void login(String username, int token)
-    {
-        
-    }
-
-    public void login(long phoneNumber, String password)
-    {
-
     }
 
     private void details(int index)
